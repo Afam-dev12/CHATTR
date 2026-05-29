@@ -13,9 +13,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <link rel="stylesheet"
-          href="{{ url_for(
-          'static'
-          filename='css/style.css') }}">
+          href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body class="{% if current_user.is_authenticated and current_user.theme == 'light' %}bg-white text-black{% else %}bg-gray-950 text-white{% endif %}">
@@ -23,11 +21,11 @@
     
     {% if messages %}
 
-       <div class=""fixed top-5 right-5 z-50>
+       <div class="fixed top-5 right-5 z-50">
 
             {% for message in messages %}
 
-               <div class="bg-blue-500 text-white p-4 rounded-x1 mb-2">
+               <div class="bg-blue-500 text-white p-4 rounded-xl mb-2">
                   
                   {{ message }}
 
@@ -37,6 +35,8 @@
 
        </div>
 
+      {% endif %}
+      
       {% endwith %}
 
       {% block content %}
