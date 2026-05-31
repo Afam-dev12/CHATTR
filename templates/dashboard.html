@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="flex h-screen">
+
+    <div class="w-[300px] bg-gray-900 p-5">
+
+        <div class="flex items-center gap-3 mb-6">
+
+            <img
+                src="{% if current_user.profile_pic %}/static/uploads/profile_pics/{{ current_user.profile_pic }}{% else %}/static/images/default-avatar.png{% endif %}"
+                class="w-16 h-16 rounded-full object-cover">
+
+            <div>
+                <h2 class="text-xl font-bold">
+                    {{ current_user.username }}
+                </h2>
+
+                <p class="text-gray-400">
+                    {{ current_user.bio or "No bio yet" }}
+                </p>
+
+            </div>    
+
+        </div>
+
+        <a href="/profile"
+           class="block bg-blue-500 p-3 rounded-xl text-center mb-3">
+        
+           Edit Profile
+
+        </a>
+
+        <a href="/logout"
+           class="block bg-red-500 p-3 rounded-xl text-center">
+
+           Logout
+        </a>
+
+    </div>
+
+    <div class="flex-1 p-6 overflow-y-auto">
+
+        <form method="GET" class="mb-6">
+
+            <input
+                type="text"
+                name="search"
+                placeholder="Search users..."
+                class="w-full p-4 rounded-2xl bg-gray-900 outline-none">
+
+        </form>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+             {% for user in users %}
+            
+               {% if user.id != current_user.id %}
+
+               <div class="bg-gray-900 p-5 rounded-2xl">
+                  
+                 <div class="flex items-center gap-3">
+                     
+                    <img
+                       src="{% if user.profile_pic %}/static/uploads/profile_pics/{{ user.profile_pic }}{% else %}/static/images/default-avatar.png{% endif %}"
+                       class="w-14 h-14 rounded-full object-cover">
+
+                <div>
+
+
+                    <div class="flex items-center gap-2">
+
+                        <h3 class="text-xl font-bold">
+
+                            {{ user.username  }}
+
+                        </h3>
+
+                        {% if user.online %}
+
+                        <div class="online-dot"></div>
+
+                        {% endif %}
+
+                    </div>
+
+                    <p class="text-gray-400">
+
+                        {{ user.bio or "No bio yet" }}
+                    </p>
+
+                </div>
+
+                      
+                 </div>
+
+                 <a href="{{ url_for('chat', user_id=user.id) }}"
+                    class="block mt-4 text-center bg-blue-500 p-3 rounded-xl">
+
+                    Message
+
+                </a>
+
+               </div>
+
+               {% endif %}
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
