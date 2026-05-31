@@ -37,6 +37,11 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
 
 app.config["UPLOAD_FOLDER"] = "static/uploads"
 
+os.makedirs(
+    os.path.join(app.config["UPLOAD_FOLDER"], "profile_pics"),
+    exist_ok=True
+)
+
 db.init_app(app)
 
 bcrypt = Bcrypt(app)
