@@ -6,7 +6,7 @@ db = SQLAlchemy()
 
 class User(UserMixin, db.Model):
 
-    id = db.column(db.Integer, primary_keys=True)
+    id = db.Column(db.Integer, primary_key=True)
 
     username = db.Column(
         db.String(50),
@@ -14,18 +14,18 @@ class User(UserMixin, db.Model):
         nullable=False
     )
 
-    email = db.column(
+    email = db.Column(
         db.String(120),
         unique=True,
         nullable=False
     )
 
-    password = db.column(
+    password = db.Column(
         db.String(200),
         nullable=False
     )
 
-    profile_pic = db.column(
+    profile_pic = db.Column(
         db.String(200),
         default="default.png"
     )
@@ -66,7 +66,7 @@ class Message(db.Model):
         nullable=True
     )
 
-    seen = db.column(
+    seen = db.Column(
         db.Boolean,
         default=False
     )
