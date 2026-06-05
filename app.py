@@ -155,7 +155,7 @@ def logout():
 
     return redirect(url_for("login"))
 
-# DshBOARD 
+# DashBOARD 
 
 @app.route("/dashboard")
 @login_required
