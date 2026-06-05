@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="max-w-2xl mx-auto mt-10 bg-gray-900 p-8 rounded-2xl">
+
+    <h1 class="text-4xl font-bold mb-6">
+        Edit Profile
+    </h1>
+
+    <form method="POST"
+          enctype="multipart/form-data">
+
+         <img
+            src="{% if current_user.profile_pic %}/static/uploads/profile_pics/{{ current_user.profile_pic }}{% else %}/static/images/default-avatar.png{% endif %}"
+            class="w-32 h-32 rounded-full object-cover mb-4">
+
+         <input
+             type="file"  
+             name="profile_pic" 
+             class="mb-6">
+            
+        <textarea
+              name="bio"
+              class="w-full p-4 rounded-2xl bg-gray-800 mb-6">{{ current_user.bio }}</textarea>
+
+        <select
+              name="theme"   
+              class="w-full p-4 rounded-2xl bg-gray-800 mb-6">
+
+              <option value="dark" {% if current_user.theme == "dark" %}selected{% endif %}>
+                 Dark Theme
+              </option>
+
+              <option value="light" {% if current_user.theme == "light" %}selected{% endif %}>
+                Light Theme
+              </option>
+            
+        </select>   
+
+        <button
+              class="bg-blue-500 px-6 py-3 rounded-xl">
+
+               Save
+            
+        </button>
+               
+    </form>
+
+</div>
+
+{% endblock %}
