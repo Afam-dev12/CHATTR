@@ -1,0 +1,16 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Database
+instance/
+database.db
+
+# Virtual environment
+venv/
+
+# Uploads (important for deployment)
+static/uploads/
+
+# Environment files
+.env
