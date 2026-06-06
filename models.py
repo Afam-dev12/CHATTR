@@ -37,7 +37,7 @@ class User(UserMixin, db.Model):
 
     online = db.Column(
         db.Boolean,
-        default="dark"
+        default="False"
     )
 
     created_at = db.Column(
@@ -74,4 +74,9 @@ class Message(db.Model):
     timestamp = db.Column(
         db.DateTime,
         default=datetime.utcnow
+    )
+
+    theme = db.Column(
+        db.String(20),
+        default="dark"
     )
