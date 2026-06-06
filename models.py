@@ -37,7 +37,7 @@ class User(UserMixin, db.Model):
 
     online = db.Column(
         db.Boolean,
-        default="False"
+        default=False
     )
 
     created_at = db.Column(
